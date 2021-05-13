@@ -9,7 +9,7 @@ This repository lives at https://gitlab.freedesktop.org/mesa/mesa.
 Other repositories are likely forks, and code found there is not supported.
 
 
-Build & install
+Build & install (virgl with xlib)
 ---------------
 
 You can find more information in our documentation (`docs/install.rst
@@ -18,10 +18,10 @@ Meson (`docs/meson.rst <https://mesa3d.org/meson.html>`_):
 
 .. code-block:: sh
 
-  $ mkdir build
-  $ cd build
-  $ meson ..
-  $ sudo ninja install
+  $ meson . build -Dgallium-va=false -Ddri-drivers= -Dgallium-drivers=virgl -Ddri3=false -Dvulkan-drivers= -Dglx=gallium-xlib -Dplatforms=x11
+  $ ninja -C build
+  $ cp build/src/gallium/targets/libgl-xlib/libGL.so.1.5.0 /your/library/path
+P.S.: It is recommended to rename the shared lib to libGL.so.1 befory copying it to your library path
 
 
 Support
